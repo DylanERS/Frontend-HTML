@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>Pasteleria Galactica</title>
+</head>
+
+<body>
+
+    <style>
+        .slide {
+            position: relative;
+            box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.64);
+            margin-top: 4px;
+        }
+
+        .slide-inner {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: calc(300px + 20em);
+        }
+
+        .slide-open:checked+.slide-item {
+            position: static;
+            opacity: 100;
+        }
+
+        .slide-item {
+            position: absolute;
+            opacity: 0;
+            -webkit-transition: opacity 0.6s ease-out;
+            transition: opacity 0.6s ease-out;
+        }
+
+        .slide-item img {
+            display: block;
+            height: auto;
+            max-width: 100%;
+        }
+
+        .slide-control {
+            background: rgba(0, 0, 0, 0.28);
+            border-radius: 50%;
+            color: #fff;
+            cursor: pointer;
+            display: none;
+            font-size: 40px;
+            height: 40px;
+            line-height: 35px;
+            position: absolute;
+            top: 50%;
+            -webkit-transform: translate(0, -50%);
+            cursor: pointer;
+            -ms-transform: translate(0, -50%);
+            transform: translate(0, -50%);
+            text-align: center;
+            width: 40px;
+            z-index: 10;
+        }
+
+        .slide-control.prev {
+            left: 2%;
+        }
+
+        .slide-control.next {
+            right: 2%;
+        }
+
+        .slide-control:hover {
+            background: rgba(0, 0, 0, 0.8);
+            color: #aaaaaa;
+        }
+
+        #slide-1:checked~.control-1,
+        #slide-2:checked~.control-2,
+        #slide-3:checked~.control-3 {
+            display: block;
+        }
+
+        .slide-indicador {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            bottom: 2%;
+            left: 0;
+            right: 0;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .slide-indicador li {
+            display: inline-block;
+            margin: 0 5px;
+        }
+
+        .slide-circulo {
+            color: #828282;
+            cursor: pointer;
+            display: block;
+            font-size: 35px;
+        }
+
+        .slide-circulo:hover {
+            color: #aaaaaa;
+        }
+
+        #slide-1:checked~.control-1~.slide-indicador li:nth-child(1) .slide-circulo,
+        #slide-2:checked~.control-2~.slide-indicador li:nth-child(2) .slide-circulo,
+        #slide-3:checked~.control-3~.slide-indicador li:nth-child(3) .slide-circulo {
+            color: #428bca;
+        }
+
+        #titulo {
+            width: 100%;
+            position: absolute;
+            padding: 0px;
+            margin: 0px auto;
+            text-align: center;
+            font-size: 27px;
+            color: rgba(255, 255, 255, 1);
+            font-family: 'Open Sans', sans-serif;
+            z-index: 9999;
+            text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.33),
+                -1px 0px 2px rgba(255, 255, 255, 0);
+        }
+    </style>
+
+    <a name="inicio"></a>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper">
+                <a href="./Pasteleria.html" class="brand-logo right">
+                    <img class="circle responsive-img" width="65px" src="./Logo_Pasteleria.png"
+                        alt="Pasteleria Galactica">
+                </a>
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#nuestros_pasteles">Nuestros Pasteles</a></li>
+                    <li><a href="#adornos">Adornos</a></li>
+                    <li><a href="#sabores">Sabores</a></li>
+                    <li><a href="#pedido">Realizar Pedido</a></li>
+                    <li><a href="#ubicacion">Ubicación</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+
+        <a name="nuestros_pasteles"></a>
+        <div class="slide">
+            <div class="slide-inner">
+                <input class="slide-open" type="radio" id="slide-1" name="slide" aria-hidden="true" hidden=""
+                    checked="checked">
+                <div class="slide-item">
+                    <img src="./Pastel_1.jpg" class="pastel_img">
+                </div>
+                <input class="slide-open" type="radio" id="slide-2" name="slide" aria-hidden="true" hidden="">
+                <div class="slide-item">
+                    <img src="./Pastel_2.jpg">
+                </div>
+                <input class="slide-open" type="radio" id="slide-3" name="slide" aria-hidden="true" hidden="">
+                <div class="slide-item">
+                    <img src="./Pastel_3.jpg">
+                </div>
+                <label for="slide-3" class="slide-control prev control-1">‹</label>
+                <label for="slide-2" class="slide-control next control-1">›</label>
+                <label for="slide-1" class="slide-control prev control-2">‹</label>
+                <label for="slide-3" class="slide-control next control-2">›</label>
+                <label for="slide-2" class="slide-control prev control-3">‹</label>
+                <label for="slide-1" class="slide-control next control-3">›</label>
+                <ol class="slide-indicador">
+                    <li>
+                        <label for="slide-1" class="slide-circulo">•</label>
+                    </li>
+                    <li>
+                        <label for="slide-2" class="slide-circulo">•</label>
+                    </li>
+                    <li>
+                        <label for="slide-3" class="slide-circulo">•</label>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <a name="adornos"></a>
+        <div class="card" style="background-color: #ddd78d;">
+            <div class="card-content">
+                <h6 class="center-align"><b>Tenemos la mejor decoración para tu pastel.</b></h6>
+            </div>
+            <div class="row">
+                <div class="col s12 m4">
+                    <div class="card hoverable">
+                        <div class="card-image">
+                            <img src="./Marmol.jpg" height="300px">
+                        </div>
+                        <div class="card-content">
+                            <h6 class="center-align"><b>Cobertura tipo mármol.</b></h6>
+                            <p class="center-align">Este es un estilo que se caracteriza por dar ese toque de elegancia,
+                                modernidad y al mismo tiempo simplicidad al diseño de un pastel. Es
+                                una excelente opción para decorados de bodas o eventos muy elegantes.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card hoverable">
+                        <div class="card-image">
+                            <img src="./Geoda.jpg" height="300px">
+                        </div>
+                        <div class="card-content">
+                            <h6 class="center-align"><b>Pasteles estilo geoda.</b></h6>
+                            <p class="center-align">Este decorado está inspirado en las geodas que son
+                                cavidades rocosas que se encuentran en la naturaleza y dentro de las cuales
+                                se forman minerales cristalizados como el cuarzo calcedonia, amatista o ágata.
+                                Estos minerales sólo son visibles una vez que se quita una parte de la capa
+                                superior de la roca y esto es precisamente lo que se representa en este tipo de
+                                pasteles.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card hoverable">
+                        <div class="card-image">
+                            <img src="./Drip_cake.jpg" height="300px">
+                        </div>
+                        <div class="card-content">
+                            <h6 class="center-align"><b>Drip cakes.</b></h6>
+                            <p class="center-align">Se trata de pasteles decorados con un goteo artístico
+                                que cubre la parte superior y se desliza por todas las capas. Estos pasteles
+                                tienen como base las torres de pastel ya que con esto se genera el efecto ideal para el
+                                goteo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a name="sabores"></a>
+        <div class="card" style="background-color: #ddd78d;">
+            <div class="card-content">
+                <h6 class="center-align"><b>Tenemos los mejores sabores para tu pastel.</b></h6>
+            </div>
+            <div class="row">
+                <div class="col s12 m4">
+                    <div class="card hoverable">
+                        <div class="card-image">
+                            <img src="./Chocolate.jpeg" height="300px">
+                        </div>
+                        <div class="card-content">
+                            <h6 class="center-align"><b>Chocolate.</b></h6>
+                            <p class="center-align">Comer chocolate puede tener los siguientes beneficios:</p>
+                            <ul class="center-align">
+                                <li><i>Disminuir los niveles de colesterol</i></li>
+                                <li><i>Prevenir el deterioro cognitivo</i></li>
+                                <li><i>Reducir el riesgo de problemas cardiovasculares</i></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card hoverable">
+                        <div class="card-image">
+                            <img src="./Cafe.jpg" height="300px">
+                        </div>
+                        <div class="card-content">
+                            <h6 class="center-align"><b>Cafe.</b></h6>
+                            <p class="center-align">Estos son algunos de los principales beneficios de beber café.</p>
+                            <ul class="center-align">
+                                <li><i>Ayuda a quemar grasas</i></li>
+                                <li><i>Aporta nutrientes</i></li>
+                                <li><i>Protege el corazón e hígado</i></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <div class="card hoverable">
+                        <div class="card-image">
+                            <img src="./Cajeta.jpg" height="300px">
+                        </div>
+                        <div class="card-content">
+                            <h6 class="center-align"><b>Cajeta.</b></h6>
+                            <p class="center-align">Su contenido en leche aporta proteínas, incluyendo
+                                muchos de los aminoácidos esenciales, calcio, riboflavina, de vitamina A y
+                                tiamina. La elevada cantidad de azúcar usada en su elaboración le proporciona un alto
+                                valor calórico.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a name="pedido"></a>
+        <div class="card">
+            <div class="card-content">
+                <h5 class="center-align"><b>Realizar pedidio</b></h5>
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input style="border-color: black;" placeholder="Nombre completo" id="nombre_completo"
+                                    type="text" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input style="border-color: black;" placeholder="5511122233" id="telefono" type="tel"
+                                    maxlength="10" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input style="border-color: black;" placeholder="Correo electronico" id="email"
+                                    type="email" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s6">
+                                <label>Adorno</label>
+                                <select class="browser-default">
+                                    <option value="" disabled selected>Elige un adorno</option>
+                                    <option value="1">Cobertura tipo mármol</option>
+                                    <option value="2">Pasteles estilo geoda</option>
+                                    <option value="3">Drip cakes</option>
+                                </select>
+                            </div>
+
+                            <div class="col s6">
+                                <label>Sabor</label>
+                                <select class="browser-default">
+                                    <option value="" disabled selected>Elige un sabor</option>
+                                    <option value="1">Chocolate</option>
+                                    <option value="2">Cafe</option>
+                                    <option value="3">Cajeta</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <textarea id="textarea1" required class="materialize-textarea"
+                                    placeholder="Agrega una descripción de tu pastel como la forma, color, etc."></textarea>
+                            </div>
+                        </div>
+                        <input type="submit" class="btn modal-trigger" data-target="modalPedido" id="enviarPedido">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <a name="ubicacion"></a>
+        <div class="card" style="background-color: #ddd78d;">
+            <div class="card-content">
+                <h6 class="center-align"><b>Ubicación.</b></h6>
+            </div>
+            <div class="row">
+                <div class="col s12 m6">
+                    <div class="card hoverable">
+                        <div class="card-content">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.3473980548124!2d-98.90817908557193!3d19.310725949571406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce1f8ca8e943df%3A0xda598f8a31064f40!2sMontparnasse%20Ixtapaluca!5e0!3m2!1ses!2smx!4v1646452095720!5m2!1ses!2smx" width="400" height="450" style="border:0;" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6">
+                    <div class="card hoverable">
+                        <div class="card-content">
+                            <h6 class="center-align"><b>Telefono</b></h6>
+                            <p class="center-align">5512319893</p>
+                            <br>
+                            <hr>
+                            <h6 class="center-align"><b>Horarios de atención</b></h6>
+                            <p class="center-align">viernes, 09:00–21:00</p>
+                            <p class="center-align">sábado, 09:00–21:00</p>
+                            <p class="center-align">domingo, 09:00–21:00</p>
+                            <p class="center-align">lunes, 09:00–21:00</p>
+                            <p class="center-align">martes, 09:00–21:00</p>
+                            <p class="center-align">miércoles, 09:00–21:00</p>
+                            <p class="center-align">jueves, 09:00–21:00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="modalPedido" class="modal">
+            <div class="modal-content">
+                <h4 class="center-align">Pedido realizado</h4>
+                <p class="center-align">Ya tenemos su pedido en nuestro negocio, nos contactaremos con usted 2 dias antes de la entrega para
+                    afinar detalles del envio</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.modal');
+            var instances = M.Modal.init(elems);
+
+            if($('#nombre_completo').val() != ''){
+        }
+        });
+    </script>
+</body>
+
+</html>
